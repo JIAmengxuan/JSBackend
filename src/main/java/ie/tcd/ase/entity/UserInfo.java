@@ -1,7 +1,5 @@
 package ie.tcd.ase.entity;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.Date;
 
 public class UserInfo {
