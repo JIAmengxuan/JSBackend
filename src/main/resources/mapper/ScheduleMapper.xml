@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ie.tcd.ase.dao.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="ie.tcd.ase.entity.Schedule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="start_position" property="startPosition" jdbcType="VARCHAR" />
+    <result column="start_position_longitude" property="startPositionLongitude" jdbcType="VARCHAR" />
+    <result column="start_position_latitude" property="startPositionLatitude" jdbcType="VARCHAR" />
+    <result column="end_position" property="endPosition" jdbcType="VARCHAR" />
+    <result column="end_position_longitude" property="endPositionLongitude" jdbcType="VARCHAR" />
+    <result column="end_position_latitude" property="endPositionLatitude" jdbcType="VARCHAR" />
+    <result column="weekday" property="weekday" jdbcType="INTEGER" />
+    <result column="start_duration" property="startDuration" jdbcType="DATE" />
+    <result column="end_duration" property="endDuration" jdbcType="DATE" />
+    <result column="start_duration2" property="startDuration2" jdbcType="DATE" />
+    <result column="end_duration2" property="endDuration2" jdbcType="DATE" />
+    <result column="gender_preference" property="genderPreference" jdbcType="INTEGER" />
+    <result column="rating_preference" property="ratingPreference" jdbcType="INTEGER" />
+    <result column="commute_type" property="commuteType" jdbcType="INTEGER" />
+    <result column="engage_time" property="engageTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="current_server" property="currentServer" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_date, update_date, create_by, update_by, user_id, start_position, start_position_longitude, 
+    start_position_latitude, end_position, end_position_longitude, end_position_latitude, 
+    weekday, start_duration, end_duration, start_duration2, end_duration2, gender_preference, 
+    rating_preference, commute_type, engage_time, status, current_server
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="ie.tcd.ase.entity.ScheduleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from schedule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from schedule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ie.tcd.ase.entity.ScheduleExample" >
+    delete from schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ie.tcd.ase.entity.Schedule" >
+    insert into schedule (id, create_date, update_date, 
+      create_by, update_by, user_id, 
+      start_position, start_position_longitude, 
+      start_position_latitude, end_position, end_position_longitude, 
+      end_position_latitude, weekday, start_duration, 
+      end_duration, start_duration2, end_duration2, 
+      gender_preference, rating_preference, commute_type, 
+      engage_time, status, current_server
+      )
+    values (#{id,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{startPosition,jdbcType=VARCHAR}, #{startPositionLongitude,jdbcType=VARCHAR}, 
+      #{startPositionLatitude,jdbcType=VARCHAR}, #{endPosition,jdbcType=VARCHAR}, #{endPositionLongitude,jdbcType=VARCHAR}, 
+      #{endPositionLatitude,jdbcType=VARCHAR}, #{weekday,jdbcType=INTEGER}, #{startDuration,jdbcType=DATE}, 
+      #{endDuration,jdbcType=DATE}, #{startDuration2,jdbcType=DATE}, #{endDuration2,jdbcType=DATE}, 
+      #{genderPreference,jdbcType=INTEGER}, #{ratingPreference,jdbcType=INTEGER}, #{commuteType,jdbcType=INTEGER}, 
+      #{engageTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{currentServer,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ie.tcd.ase.entity.Schedule" >
+    insert into schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="startPosition != null" >
+        start_position,
+      </if>
+      <if test="startPositionLongitude != null" >
+        start_position_longitude,
+      </if>
+      <if test="startPositionLatitude != null" >
+        start_position_latitude,
+      </if>
+      <if test="endPosition != null" >
+        end_position,
+      </if>
+      <if test="endPositionLongitude != null" >
+        end_position_longitude,
+      </if>
+      <if test="endPositionLatitude != null" >
+        end_position_latitude,
+      </if>
+      <if test="weekday != null" >
+        weekday,
+      </if>
+      <if test="startDuration != null" >
+        start_duration,
+      </if>
+      <if test="endDuration != null" >
+        end_duration,
+      </if>
+      <if test="startDuration2 != null" >
+        start_duration2,
+      </if>
+      <if test="endDuration2 != null" >
+        end_duration2,
+      </if>
+      <if test="genderPreference != null" >
+        gender_preference,
+      </if>
+      <if test="ratingPreference != null" >
+        rating_preference,
+      </if>
+      <if test="commuteType != null" >
+        commute_type,
+      </if>
+      <if test="engageTime != null" >
+        engage_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="currentServer != null" >
+        current_server,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="startPosition != null" >
+        #{startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="startPositionLongitude != null" >
+        #{startPositionLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="startPositionLatitude != null" >
+        #{startPositionLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="endPosition != null" >
+        #{endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="endPositionLongitude != null" >
+        #{endPositionLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="endPositionLatitude != null" >
+        #{endPositionLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null" >
+        #{weekday,jdbcType=INTEGER},
+      </if>
+      <if test="startDuration != null" >
+        #{startDuration,jdbcType=DATE},
+      </if>
+      <if test="endDuration != null" >
+        #{endDuration,jdbcType=DATE},
+      </if>
+      <if test="startDuration2 != null" >
+        #{startDuration2,jdbcType=DATE},
+      </if>
+      <if test="endDuration2 != null" >
+        #{endDuration2,jdbcType=DATE},
+      </if>
+      <if test="genderPreference != null" >
+        #{genderPreference,jdbcType=INTEGER},
+      </if>
+      <if test="ratingPreference != null" >
+        #{ratingPreference,jdbcType=INTEGER},
+      </if>
+      <if test="commuteType != null" >
+        #{commuteType,jdbcType=INTEGER},
+      </if>
+      <if test="engageTime != null" >
+        #{engageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="currentServer != null" >
+        #{currentServer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ie.tcd.ase.entity.ScheduleExample" resultType="java.lang.Integer" >
+    select count(*) from schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update schedule
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startPosition != null" >
+        start_position = #{record.startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startPositionLongitude != null" >
+        start_position_longitude = #{record.startPositionLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startPositionLatitude != null" >
+        start_position_latitude = #{record.startPositionLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endPosition != null" >
+        end_position = #{record.endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endPositionLongitude != null" >
+        end_position_longitude = #{record.endPositionLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endPositionLatitude != null" >
+        end_position_latitude = #{record.endPositionLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekday != null" >
+        weekday = #{record.weekday,jdbcType=INTEGER},
+      </if>
+      <if test="record.startDuration != null" >
+        start_duration = #{record.startDuration,jdbcType=DATE},
+      </if>
+      <if test="record.endDuration != null" >
+        end_duration = #{record.endDuration,jdbcType=DATE},
+      </if>
+      <if test="record.startDuration2 != null" >
+        start_duration2 = #{record.startDuration2,jdbcType=DATE},
+      </if>
+      <if test="record.endDuration2 != null" >
+        end_duration2 = #{record.endDuration2,jdbcType=DATE},
+      </if>
+      <if test="record.genderPreference != null" >
+        gender_preference = #{record.genderPreference,jdbcType=INTEGER},
+      </if>
+      <if test="record.ratingPreference != null" >
+        rating_preference = #{record.ratingPreference,jdbcType=INTEGER},
+      </if>
+      <if test="record.commuteType != null" >
+        commute_type = #{record.commuteType,jdbcType=INTEGER},
+      </if>
+      <if test="record.engageTime != null" >
+        engage_time = #{record.engageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentServer != null" >
+        current_server = #{record.currentServer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update schedule
+    set id = #{record.id,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=DATE},
+      update_date = #{record.updateDate,jdbcType=DATE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      start_position = #{record.startPosition,jdbcType=VARCHAR},
+      start_position_longitude = #{record.startPositionLongitude,jdbcType=VARCHAR},
+      start_position_latitude = #{record.startPositionLatitude,jdbcType=VARCHAR},
+      end_position = #{record.endPosition,jdbcType=VARCHAR},
+      end_position_longitude = #{record.endPositionLongitude,jdbcType=VARCHAR},
+      end_position_latitude = #{record.endPositionLatitude,jdbcType=VARCHAR},
+      weekday = #{record.weekday,jdbcType=INTEGER},
+      start_duration = #{record.startDuration,jdbcType=DATE},
+      end_duration = #{record.endDuration,jdbcType=DATE},
+      start_duration2 = #{record.startDuration2,jdbcType=DATE},
+      end_duration2 = #{record.endDuration2,jdbcType=DATE},
+      gender_preference = #{record.genderPreference,jdbcType=INTEGER},
+      rating_preference = #{record.ratingPreference,jdbcType=INTEGER},
+      commute_type = #{record.commuteType,jdbcType=INTEGER},
+      engage_time = #{record.engageTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      current_server = #{record.currentServer,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ie.tcd.ase.entity.Schedule" >
+    update schedule
+    <set >
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="startPosition != null" >
+        start_position = #{startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="startPositionLongitude != null" >
+        start_position_longitude = #{startPositionLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="startPositionLatitude != null" >
+        start_position_latitude = #{startPositionLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="endPosition != null" >
+        end_position = #{endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="endPositionLongitude != null" >
+        end_position_longitude = #{endPositionLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="endPositionLatitude != null" >
+        end_position_latitude = #{endPositionLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null" >
+        weekday = #{weekday,jdbcType=INTEGER},
+      </if>
+      <if test="startDuration != null" >
+        start_duration = #{startDuration,jdbcType=DATE},
+      </if>
+      <if test="endDuration != null" >
+        end_duration = #{endDuration,jdbcType=DATE},
+      </if>
+      <if test="startDuration2 != null" >
+        start_duration2 = #{startDuration2,jdbcType=DATE},
+      </if>
+      <if test="endDuration2 != null" >
+        end_duration2 = #{endDuration2,jdbcType=DATE},
+      </if>
+      <if test="genderPreference != null" >
+        gender_preference = #{genderPreference,jdbcType=INTEGER},
+      </if>
+      <if test="ratingPreference != null" >
+        rating_preference = #{ratingPreference,jdbcType=INTEGER},
+      </if>
+      <if test="commuteType != null" >
+        commute_type = #{commuteType,jdbcType=INTEGER},
+      </if>
+      <if test="engageTime != null" >
+        engage_time = #{engageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="currentServer != null" >
+        current_server = #{currentServer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ie.tcd.ase.entity.Schedule" >
+    update schedule
+    set create_date = #{createDate,jdbcType=DATE},
+      update_date = #{updateDate,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      start_position = #{startPosition,jdbcType=VARCHAR},
+      start_position_longitude = #{startPositionLongitude,jdbcType=VARCHAR},
+      start_position_latitude = #{startPositionLatitude,jdbcType=VARCHAR},
+      end_position = #{endPosition,jdbcType=VARCHAR},
+      end_position_longitude = #{endPositionLongitude,jdbcType=VARCHAR},
+      end_position_latitude = #{endPositionLatitude,jdbcType=VARCHAR},
+      weekday = #{weekday,jdbcType=INTEGER},
+      start_duration = #{startDuration,jdbcType=DATE},
+      end_duration = #{endDuration,jdbcType=DATE},
+      start_duration2 = #{startDuration2,jdbcType=DATE},
+      end_duration2 = #{endDuration2,jdbcType=DATE},
+      gender_preference = #{genderPreference,jdbcType=INTEGER},
+      rating_preference = #{ratingPreference,jdbcType=INTEGER},
+      commute_type = #{commuteType,jdbcType=INTEGER},
+      engage_time = #{engageTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      current_server = #{currentServer,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

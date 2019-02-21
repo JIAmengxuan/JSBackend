@@ -2,7 +2,7 @@ package ie.tcd.ase.entity;
 
 import java.util.Date;
 
-public class UserInfo {
+public class LoginInfo {
     private Integer id;
 
     private Date createDate;
@@ -13,13 +13,13 @@ public class UserInfo {
 
     private String updateBy;
 
-    private String userName;
+    private Integer userId;
 
-    private String gender;
+    private Integer userStatus;
 
-    private String email;
+    private String password33;
 
-    private Integer phoneNumber;
+    private Integer authorizationToken;
 
     public Integer getId() {
         return id;
@@ -61,35 +61,35 @@ public class UserInfo {
         this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
-    public String getUserName() {
-        return userName;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getGender() {
-        return gender;
+    public Integer getUserStatus() {
+        return userStatus;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword33() {
+        return password33;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setPassword33(String password33) {
+        this.password33 = password33 == null ? null : password33.trim();
     }
 
-    public Integer getPhoneNumber() {
-        return phoneNumber;
+    public Integer getAuthorizationToken() {
+        return authorizationToken;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setAuthorizationToken(Integer authorizationToken) {
+        this.authorizationToken = authorizationToken;
     }
 }

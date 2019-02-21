@@ -2,7 +2,7 @@ package ie.tcd.ase.entity;
 
 import java.util.Date;
 
-public class UserInfo {
+public class Trip {
     private Integer id;
 
     private Date createDate;
@@ -13,13 +13,15 @@ public class UserInfo {
 
     private String updateBy;
 
-    private String userName;
+    private Integer scheduleId;
 
-    private String gender;
+    private Integer status;
 
-    private String email;
+    private String startPosition;
 
-    private Integer phoneNumber;
+    private String endPosition;
+
+    private Integer weekday;
 
     public Integer getId() {
         return id;
@@ -61,35 +63,43 @@ public class UserInfo {
         this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
-    public String getUserName() {
-        return userName;
+    public Integer getScheduleId() {
+        return scheduleId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
-    public String getGender() {
-        return gender;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStartPosition() {
+        return startPosition;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setStartPosition(String startPosition) {
+        this.startPosition = startPosition == null ? null : startPosition.trim();
     }
 
-    public Integer getPhoneNumber() {
-        return phoneNumber;
+    public String getEndPosition() {
+        return endPosition;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setEndPosition(String endPosition) {
+        this.endPosition = endPosition == null ? null : endPosition.trim();
+    }
+
+    public Integer getWeekday() {
+        return weekday;
+    }
+
+    public void setWeekday(Integer weekday) {
+        this.weekday = weekday;
     }
 }

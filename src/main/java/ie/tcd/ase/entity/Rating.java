@@ -2,7 +2,7 @@ package ie.tcd.ase.entity;
 
 import java.util.Date;
 
-public class UserInfo {
+public class Rating {
     private Integer id;
 
     private Date createDate;
@@ -13,13 +13,13 @@ public class UserInfo {
 
     private String updateBy;
 
-    private String userName;
+    private Integer userId;
 
-    private String gender;
+    private Integer totalTrips;
 
-    private String email;
+    private Integer totalRatings;
 
-    private Integer phoneNumber;
+    private Integer averageRating;
 
     public Integer getId() {
         return id;
@@ -61,35 +61,35 @@ public class UserInfo {
         this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
-    public String getUserName() {
-        return userName;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getGender() {
-        return gender;
+    public Integer getTotalTrips() {
+        return totalTrips;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setTotalTrips(Integer totalTrips) {
+        this.totalTrips = totalTrips;
     }
 
-    public String getEmail() {
-        return email;
+    public Integer getTotalRatings() {
+        return totalRatings;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setTotalRatings(Integer totalRatings) {
+        this.totalRatings = totalRatings;
     }
 
-    public Integer getPhoneNumber() {
-        return phoneNumber;
+    public Integer getAverageRating() {
+        return averageRating;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setAverageRating(Integer averageRating) {
+        this.averageRating = averageRating;
     }
 }
