@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Controller
 @RequestMapping("/controller")
 public class HellloController {
@@ -17,6 +20,8 @@ public class HellloController {
     @ResponseBody
     public String helloWorld() {
         logger.info("Entered hello world controller");
+        HashSet set = new HashSet();
+        set.add(1);
         return "hello controller";
     }
 }
