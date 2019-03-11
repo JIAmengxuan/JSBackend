@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/controller")

@@ -18,6 +18,7 @@ public class UserInfoMapperTest {
 
     @Test
     public void insert() {
+        System.out.println("enter test");
         UserInfo record = new UserInfo();
         record.setCreateDate(new Date());
         record.setUpdateDate(new Date());

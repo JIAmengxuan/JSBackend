@@ -6,7 +6,7 @@
   <groupId>ie.tcd.ase</groupId>
   <artifactId>JSBackend</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>journeySharing</name>
 
@@ -223,6 +223,7 @@
             <executions>
                 <execution>
                     <id>Generate MyBatis Artifacts</id>
+                    <phase>deploy</phase>
                     <goals>
                         <goal>generate</goal>
                     </goals>
