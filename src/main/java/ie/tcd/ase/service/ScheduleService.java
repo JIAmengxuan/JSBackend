@@ -15,8 +15,8 @@ public interface ScheduleService {
 
     /**
      * For the commute page. Get the schedule history from the database.
-     * @param phoneNum The unique phone number of the user.
+     * @param userId The unique phone number of the user.
      * @return The list of schedule history.
      */
-    List<Schedule> getScheduleList(String phoneNum);
+    List<Schedule> getScheduleList(int userId);
 }

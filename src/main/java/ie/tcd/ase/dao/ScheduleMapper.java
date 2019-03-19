@@ -20,6 +20,8 @@ public interface ScheduleMapper {
 
     Schedule selectByPrimaryKey(Integer id);
 
+    List<Schedule> selectByUserId(Integer userId);
+
     int updateByExampleSelective(@Param("record") Schedule record, @Param("example") ScheduleExample example);
 
     int updateByExample(@Param("record") Schedule record, @Param("example") ScheduleExample example);

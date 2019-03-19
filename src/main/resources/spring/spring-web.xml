@@ -32,4 +32,5 @@
 
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="ie.tcd.ase.controller"/>
+    <context:component-scan base-package="ie.tcd.ase.service"/>
 </beans>

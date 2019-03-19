@@ -14,13 +14,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public int insertUserInfo(UserInfo userInfo) {
-        userInfoMapper.insert(userInfo);
-        return 0;
+        return userInfoMapper.insert(userInfo);
     }
 
     @Override
     public UserInfo selectByUserId(int id) {
-        UserInfo record = userInfoMapper.selectByPrimaryKey(id);
-        return record;
+        return userInfoMapper.selectByPrimaryKey(id);
     }
 }
