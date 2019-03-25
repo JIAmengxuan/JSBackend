@@ -48,6 +48,6 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table schema="journeysharing" tableName="login_info"></table>
+        <table schema="journeysharing" tableName="trip"></table>
     </context>
 </generatorConfiguration>

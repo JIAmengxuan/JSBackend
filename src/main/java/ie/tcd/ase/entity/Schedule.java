@@ -37,14 +37,25 @@ public class Schedule {
 
     private Date endDuration2;
 
+    /**
+     * 1: male, 2: female,
+     * 3:  Other
+     */
     private Integer genderPreference;
 
     private Integer ratingPreference;
 
+    /**
+     * 1: daily commute
+     * 2: real_time_commute
+     */
     private Integer commuteType;
 
     private Date engageTime;
 
+    /**
+     * 0: initialization, 1: fail,2: success
+     */
     private Integer status;
 
     private String currentServer;

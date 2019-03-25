@@ -26,6 +26,8 @@ public class UserInfoController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String add(@RequestBody UserInfo info) {
+        info.setCreateDate(new Date());
+
         userInfoService.insertUserInfo(info);
         logger.info(info.getUserName());
         return "ok";

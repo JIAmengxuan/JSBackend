@@ -15,6 +15,8 @@ public class Trip {
 
     private Integer scheduleId;
 
+    private Integer groupId;
+
     private Integer status;
 
     private String startPosition;
@@ -69,6 +71,14 @@ public class Trip {
 
     public void setScheduleId(Integer scheduleId) {
         this.scheduleId = scheduleId;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 
     public Integer getStatus() {

@@ -108,8 +108,8 @@
       create_by, update_by, user_name, 
       gender, email, phone_number
       )
-    values (#{id,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE}, 
-      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, sysdate(), sysdate(),
+      'SYS', 'SYS', #{userName,jdbcType=VARCHAR},
       #{gender,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=INTEGER}
       )
   </insert>

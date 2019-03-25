@@ -81,6 +81,7 @@ create table `trip` (
     `create_by` varchar (100) not null default 'sys',
     `update_by` varchar (100) not null default 'sys',
     `schedule_id` int not null comment 'id of schedule table',
+    `group_id` int not null,
     `status` int not null comment '1.initialized 2.started 3.finished 4.cancelled',
     `start_position` varchar(100) not null ,
     `end_position` varchar(100) not null  ,

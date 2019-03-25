@@ -1,37 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="ie.tcd.ase.dao.TripMapper" >
-  <resultMap id="BaseResultMap" type="ie.tcd.ase.entity.Trip" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
-    <result column="update_date" property="updateDate" jdbcType="DATE" />
-    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
-    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
-    <result column="schedule_id" property="scheduleId" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="start_position" property="startPosition" jdbcType="VARCHAR" />
-    <result column="end_position" property="endPosition" jdbcType="VARCHAR" />
-    <result column="weekday" property="weekday" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ie.tcd.ase.dao.TripMapper">
+  <resultMap id="BaseResultMap" type="ie.tcd.ase.entity.Trip">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="update_date" jdbcType="DATE" property="updateDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="schedule_id" jdbcType="INTEGER" property="scheduleId" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_position" jdbcType="VARCHAR" property="startPosition" />
+    <result column="end_position" jdbcType="VARCHAR" property="endPosition" />
+    <result column="weekday" jdbcType="INTEGER" property="weekday" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -42,25 +43,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -71,41 +72,342 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    id, create_date, update_date, create_by, update_by, schedule_id, status, start_position, 
-    end_position, weekday
+  <sql id="Base_Column_List">
+    id, create_date, update_date, create_by, update_by, schedule_id, group_id, status, 
+    start_position, end_position, weekday
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="ie.tcd.ase.entity.TripExample" >
+  <select id="selectByExample" parameterType="ie.tcd.ase.entity.TripExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from trip
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from trip
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from trip
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="ie.tcd.ase.entity.TripExample" >
+  <delete id="deleteByExample" parameterType="ie.tcd.ase.entity.TripExample">
     delete from trip
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="ie.tcd.ase.entity.Trip" >
+  <insert id="insert" parameterType="ie.tcd.ase.entity.Trip">
+    insert into trip (id, create_date, update_date, 
+      create_by, update_by, schedule_id, 
+      group_id, status, start_position, 
+      end_position, weekday)
+    values (#{id,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{scheduleId,jdbcType=INTEGER}, 
+      #{groupId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{startPosition,jdbcType=VARCHAR}, 
+      #{endPosition,jdbcType=VARCHAR}, #{weekday,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="ie.tcd.ase.entity.Trip">
+    insert into trip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="scheduleId != null">
+        schedule_id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startPosition != null">
+        start_position,
+      </if>
+      <if test="endPosition != null">
+        end_position,
+      </if>
+      <if test="weekday != null">
+        weekday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleId != null">
+        #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startPosition != null">
+        #{startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="endPosition != null">
+        #{endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null">
+        #{weekday,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ie.tcd.ase.entity.TripExample" resultType="java.lang.Integer">
+    select count(*) from trip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update trip
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scheduleId != null">
+        schedule_id = #{record.scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.startPosition != null">
+        start_position = #{record.startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endPosition != null">
+        end_position = #{record.endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekday != null">
+        weekday = #{record.weekday,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update trip
+    set id = #{record.id,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=DATE},
+      update_date = #{record.updateDate,jdbcType=DATE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      schedule_id = #{record.scheduleId,jdbcType=INTEGER},
+      group_id = #{record.groupId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      start_position = #{record.startPosition,jdbcType=VARCHAR},
+      end_position = #{record.endPosition,jdbcType=VARCHAR},
+      weekday = #{record.weekday,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ie.tcd.ase.entity.Trip">
+    update trip
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleId != null">
+        schedule_id = #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startPosition != null">
+        start_position = #{startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="endPosition != null">
+        end_position = #{endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null">
+        weekday = #{weekday,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ie.tcd.ase.entity.Trip">
+    update trip
+    set create_date = #{createDate,jdbcType=DATE},
+      update_date = #{updateDate,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      schedule_id = #{scheduleId,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      start_position = #{startPosition,jdbcType=VARCHAR},
+      end_position = #{endPosition,jdbcType=VARCHAR},
+      weekday = #{weekday,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="ie.tcd.ase.entity.Trip">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="update_date" jdbcType="DATE" property="updateDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="schedule_id" jdbcType="INTEGER" property="scheduleId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_position" jdbcType="VARCHAR" property="startPosition" />
+    <result column="end_position" jdbcType="VARCHAR" property="endPosition" />
+    <result column="weekday" jdbcType="INTEGER" property="weekday" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_date, update_date, create_by, update_by, schedule_id, status, start_position, 
+    end_position, weekday
+  </sql>
+  <select id="selectByExample" parameterType="ie.tcd.ase.entity.TripExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trip
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trip
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ie.tcd.ase.entity.TripExample">
+    delete from trip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ie.tcd.ase.entity.Trip">
     insert into trip (id, create_date, update_date, 
       create_by, update_by, schedule_id, 
       status, start_position, end_position, 
@@ -115,118 +417,118 @@
       #{status,jdbcType=INTEGER}, #{startPosition,jdbcType=VARCHAR}, #{endPosition,jdbcType=VARCHAR}, 
       #{weekday,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="ie.tcd.ase.entity.Trip" >
+  <insert id="insertSelective" parameterType="ie.tcd.ase.entity.Trip">
     insert into trip
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         create_date,
       </if>
-      <if test="updateDate != null" >
+      <if test="updateDate != null">
         update_date,
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         create_by,
       </if>
-      <if test="updateBy != null" >
+      <if test="updateBy != null">
         update_by,
       </if>
-      <if test="scheduleId != null" >
+      <if test="scheduleId != null">
         schedule_id,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="startPosition != null" >
+      <if test="startPosition != null">
         start_position,
       </if>
-      <if test="endPosition != null" >
+      <if test="endPosition != null">
         end_position,
       </if>
-      <if test="weekday != null" >
+      <if test="weekday != null">
         weekday,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         #{createDate,jdbcType=DATE},
       </if>
-      <if test="updateDate != null" >
+      <if test="updateDate != null">
         #{updateDate,jdbcType=DATE},
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         #{createBy,jdbcType=VARCHAR},
       </if>
-      <if test="updateBy != null" >
+      <if test="updateBy != null">
         #{updateBy,jdbcType=VARCHAR},
       </if>
-      <if test="scheduleId != null" >
+      <if test="scheduleId != null">
         #{scheduleId,jdbcType=INTEGER},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="startPosition != null" >
+      <if test="startPosition != null">
         #{startPosition,jdbcType=VARCHAR},
       </if>
-      <if test="endPosition != null" >
+      <if test="endPosition != null">
         #{endPosition,jdbcType=VARCHAR},
       </if>
-      <if test="weekday != null" >
+      <if test="weekday != null">
         #{weekday,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="ie.tcd.ase.entity.TripExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="ie.tcd.ase.entity.TripExample" resultType="java.lang.Integer">
     select count(*) from trip
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update trip
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.createDate != null" >
+      <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=DATE},
       </if>
-      <if test="record.updateDate != null" >
+      <if test="record.updateDate != null">
         update_date = #{record.updateDate,jdbcType=DATE},
       </if>
-      <if test="record.createBy != null" >
+      <if test="record.createBy != null">
         create_by = #{record.createBy,jdbcType=VARCHAR},
       </if>
-      <if test="record.updateBy != null" >
+      <if test="record.updateBy != null">
         update_by = #{record.updateBy,jdbcType=VARCHAR},
       </if>
-      <if test="record.scheduleId != null" >
+      <if test="record.scheduleId != null">
         schedule_id = #{record.scheduleId,jdbcType=INTEGER},
       </if>
-      <if test="record.status != null" >
+      <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.startPosition != null" >
+      <if test="record.startPosition != null">
         start_position = #{record.startPosition,jdbcType=VARCHAR},
       </if>
-      <if test="record.endPosition != null" >
+      <if test="record.endPosition != null">
         end_position = #{record.endPosition,jdbcType=VARCHAR},
       </if>
-      <if test="record.weekday != null" >
+      <if test="record.weekday != null">
         weekday = #{record.weekday,jdbcType=INTEGER},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update trip
     set id = #{record.id,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=DATE},
@@ -238,44 +540,331 @@
       start_position = #{record.startPosition,jdbcType=VARCHAR},
       end_position = #{record.endPosition,jdbcType=VARCHAR},
       weekday = #{record.weekday,jdbcType=INTEGER}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="ie.tcd.ase.entity.Trip" >
+  <update id="updateByPrimaryKeySelective" parameterType="ie.tcd.ase.entity.Trip">
     update trip
-    <set >
-      <if test="createDate != null" >
+    <set>
+      <if test="createDate != null">
         create_date = #{createDate,jdbcType=DATE},
       </if>
-      <if test="updateDate != null" >
+      <if test="updateDate != null">
         update_date = #{updateDate,jdbcType=DATE},
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         create_by = #{createBy,jdbcType=VARCHAR},
       </if>
-      <if test="updateBy != null" >
+      <if test="updateBy != null">
         update_by = #{updateBy,jdbcType=VARCHAR},
       </if>
-      <if test="scheduleId != null" >
+      <if test="scheduleId != null">
         schedule_id = #{scheduleId,jdbcType=INTEGER},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="startPosition != null" >
+      <if test="startPosition != null">
         start_position = #{startPosition,jdbcType=VARCHAR},
       </if>
-      <if test="endPosition != null" >
+      <if test="endPosition != null">
         end_position = #{endPosition,jdbcType=VARCHAR},
       </if>
-      <if test="weekday != null" >
+      <if test="weekday != null">
         weekday = #{weekday,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="ie.tcd.ase.entity.Trip" >
+  <update id="updateByPrimaryKey" parameterType="ie.tcd.ase.entity.Trip">
+    update trip
+    set create_date = #{createDate,jdbcType=DATE},
+      update_date = #{updateDate,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      schedule_id = #{scheduleId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      start_position = #{startPosition,jdbcType=VARCHAR},
+      end_position = #{endPosition,jdbcType=VARCHAR},
+      weekday = #{weekday,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="ie.tcd.ase.entity.Trip">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="update_date" jdbcType="DATE" property="updateDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="schedule_id" jdbcType="INTEGER" property="scheduleId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_position" jdbcType="VARCHAR" property="startPosition" />
+    <result column="end_position" jdbcType="VARCHAR" property="endPosition" />
+    <result column="weekday" jdbcType="INTEGER" property="weekday" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_date, update_date, create_by, update_by, schedule_id, status, start_position, 
+    end_position, weekday
+  </sql>
+  <select id="selectByExample" parameterType="ie.tcd.ase.entity.TripExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trip
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trip
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ie.tcd.ase.entity.TripExample">
+    delete from trip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ie.tcd.ase.entity.Trip">
+    insert into trip (id, create_date, update_date, 
+      create_by, update_by, schedule_id, 
+      status, start_position, end_position, 
+      weekday)
+    values (#{id,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{scheduleId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{startPosition,jdbcType=VARCHAR}, #{endPosition,jdbcType=VARCHAR}, 
+      #{weekday,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="ie.tcd.ase.entity.Trip">
+    insert into trip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="scheduleId != null">
+        schedule_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startPosition != null">
+        start_position,
+      </if>
+      <if test="endPosition != null">
+        end_position,
+      </if>
+      <if test="weekday != null">
+        weekday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleId != null">
+        #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startPosition != null">
+        #{startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="endPosition != null">
+        #{endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null">
+        #{weekday,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ie.tcd.ase.entity.TripExample" resultType="java.lang.Integer">
+    select count(*) from trip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update trip
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scheduleId != null">
+        schedule_id = #{record.scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.startPosition != null">
+        start_position = #{record.startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endPosition != null">
+        end_position = #{record.endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekday != null">
+        weekday = #{record.weekday,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update trip
+    set id = #{record.id,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=DATE},
+      update_date = #{record.updateDate,jdbcType=DATE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      schedule_id = #{record.scheduleId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      start_position = #{record.startPosition,jdbcType=VARCHAR},
+      end_position = #{record.endPosition,jdbcType=VARCHAR},
+      weekday = #{record.weekday,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ie.tcd.ase.entity.Trip">
+    update trip
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleId != null">
+        schedule_id = #{scheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startPosition != null">
+        start_position = #{startPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="endPosition != null">
+        end_position = #{endPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="weekday != null">
+        weekday = #{weekday,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ie.tcd.ase.entity.Trip">
     update trip
     set create_date = #{createDate,jdbcType=DATE},
       update_date = #{updateDate,jdbcType=DATE},
