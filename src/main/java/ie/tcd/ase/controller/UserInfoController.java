@@ -30,7 +30,7 @@ public class UserInfoController {
 
         userInfoService.insertUserInfo(info);
         logger.info(info.getUserName());
-        return "ok";
+        return JSON.toJSONString("ok");
     }
 
     public static void main(String[] args) {

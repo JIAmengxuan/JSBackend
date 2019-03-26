@@ -1,6 +1,7 @@
 package ie.tcd.ase.controller;
 
 import com.alibaba.fastjson.JSON;
+import ie.tcd.ase.dao.ResultData;
 import ie.tcd.ase.dao.TripMapper;
 import ie.tcd.ase.entity.*;
 import ie.tcd.ase.service.ScheduleService;
@@ -30,10 +31,12 @@ public class ScheduleController {
     public String add(@RequestBody Schedule schedule) {
 
         scheduleService.save(schedule);
-
         logger.info("Save schedule information successfully");
 
-        return "ok";
+        ResultData result = new ResultData();
+        result.setStatus("sucuess");
+        result.setData("ok");
+        return JSON.toJSONString("ok");
     }
 
 
@@ -41,6 +44,9 @@ public class ScheduleController {
     @ResponseBody
     public String schedules(@RequestParam("userId") int userId) {
         List<Schedule> schedules = scheduleService.getScheduleList(userId);
+        ResultData result = new ResultData();
+        result.setStatus("sucuess");
+        result.setData(schedules);
         return JSON.toJSONString(schedules);
     }
 
@@ -49,7 +55,11 @@ public class ScheduleController {
     public String users(@RequestParam("scheduleId") int scheduleId) {
         List<UserInfo> userInfos = new ArrayList<>();
         userInfos = scheduleService.getUsersBySchedule(scheduleId);
-        return JSON.toJSONString(userInfos);
+
+        ResultData result = new ResultData();
+        result.setStatus("sucuess");
+        result.setData(userInfos);
+        return JSON.toJSONString(result);
     }
 
 
