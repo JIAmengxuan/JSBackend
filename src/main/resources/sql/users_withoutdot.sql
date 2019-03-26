@@ -1,0 +1,14 @@
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-02-22', '2019-02-22', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-11', '2019-03-11', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-11', '2019-03-11', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-11', '2019-03-11', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-19', '2019-03-19', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-19', '2019-03-19', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-01-19', '2019-01-19', 'Bob', 'Bob', 'Bob', '1', 'test@test.test', 123458901);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-19', '2019-03-19', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ('2019-03-19', '2019-03-19', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ( '2019-03-20', '2019-03-20', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ( '2019-03-21', '2019-03-21', 'sys', 'sys', 'John', '1', '1111@gmail.com', 993883838);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ( '2019-03-21', '2019-03-21', 'SYS', 'SYS', 'Jinchi', '2', 'jin@test.test', 123458902);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ( '2019-03-21', '2019-03-21', 'SYS', 'SYS', 'Jinchi', '2', null, 123458902);
+INSERT INTO user_info ( create_date, update_date, create_by, update_by, user_name, gender, email, phone_number) VALUES ( '2019-03-24', '2019-03-24', 'SYS', 'SYS', 'John', '1', '1111@gmail.com', 993883838);
