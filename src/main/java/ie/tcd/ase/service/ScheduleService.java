@@ -1,6 +1,7 @@
 package ie.tcd.ase.service;
 
 import ie.tcd.ase.entity.Schedule;
+import ie.tcd.ase.entity.UserInfo;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface ScheduleService {
      * @return The list of schedule history.
      */
     List<Schedule> getScheduleList(int userId);
+
+    List<UserInfo> getUsersBySchedule(int scheduleId);
 }

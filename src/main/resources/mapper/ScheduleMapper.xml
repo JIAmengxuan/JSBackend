@@ -110,6 +110,15 @@
     from schedule
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByScheduleId" resultType="ie.tcd.ase.entity.UserInfo" parameterType="java.lang.Integer">
+    select * from user_info where id in (
+      select user_id from schedule where id in (
+        select schedule_id from trip where group_id in (
+          select group_id from trip where schedule_id = #{scheduleId,jdbcType=INTEGER}
+        )
+      ))
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from schedule
     where id = #{id,jdbcType=INTEGER}

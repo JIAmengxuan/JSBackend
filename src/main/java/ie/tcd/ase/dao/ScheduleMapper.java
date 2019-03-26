@@ -3,6 +3,8 @@ package ie.tcd.ase.dao;
 import ie.tcd.ase.entity.Schedule;
 import ie.tcd.ase.entity.ScheduleExample;
 import java.util.List;
+
+import ie.tcd.ase.entity.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ScheduleMapper {
@@ -29,4 +31,6 @@ public interface ScheduleMapper {
     int updateByPrimaryKeySelective(Schedule record);
 
     int updateByPrimaryKey(Schedule record);
+
+    List<UserInfo> selectByScheduleId(Integer scheduleId);
 }

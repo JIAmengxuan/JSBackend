@@ -83,8 +83,8 @@ create table `trip` (
     `schedule_id` int not null comment 'id of schedule table',
     `group_id` int not null,
     `status` int not null comment '1.initialized 2.started 3.finished 4.cancelled',
-    `start_position` varchar(100) not null ,
-    `end_position` varchar(100) not null  ,
+    `start_position` varchar(100) ,
+    `end_position` varchar(100),
     `weekday` int not null comment '1-7: Monday-Sunday',
 
     primary key (id),

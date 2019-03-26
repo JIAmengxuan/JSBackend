@@ -48,27 +48,10 @@ public class ScheduleController {
     @ResponseBody
     public String users(@RequestParam("scheduleId") int scheduleId) {
         List<UserInfo> userInfos = new ArrayList<>();
-
-        TripExample example = new TripExample();
-        TripExample.Criteria criteria = example.createCriteria();
-        criteria.andScheduleIdEqualTo(scheduleId);
-        List<Trip> trips = tripMapper.selectByExample(example);
-
-        int groupId = trips.get(0).getGroupId();
-        TripExample example2 = new TripExample();
-        TripExample.Criteria criteria2 = example2.createCriteria();
-        List<Trip> trips2 = tripMapper.selectByExample(example);
-
-        List<Integer> userIds = new ArrayList<>();
-        for (int i = 0; i < trips2.size(); i++) {
-            //userIds.add(trips2.get(i).getUserId());
-        }
-
-        UserInfoExample userInfoExample = new UserInfoExample();
-        UserInfoExample.Criteria criteria3 = userInfoExample.createCriteria();
-
-
+        userInfos = scheduleService.getUsersBySchedule(scheduleId);
         return JSON.toJSONString(userInfos);
     }
+
+
 
 }
