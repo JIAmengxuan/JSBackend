@@ -1,6 +1,7 @@
 package ie.tcd.ase.controller;
 
 import com.alibaba.fastjson.JSON;
+import ie.tcd.ase.dao.ResultData;
 import ie.tcd.ase.entity.UserInfo;
 import ie.tcd.ase.service.UserInfoService;
 import org.slf4j.Logger;
@@ -29,8 +30,13 @@ public class UserInfoController {
         info.setCreateDate(new Date());
 
         userInfoService.insertUserInfo(info);
-        logger.info(info.getUserName());
-        return JSON.toJSONString("ok");
+        int userId = info.getId();
+        logger.info("id:" + String.valueOf(userId));
+
+        ResultData resultData = new ResultData();
+        resultData.setStatus("success");
+        resultData.setData(info);
+        return JSON.toJSONString(resultData);
     }
 
     public static void main(String[] args) {

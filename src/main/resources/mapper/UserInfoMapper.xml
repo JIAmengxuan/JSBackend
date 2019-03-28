@@ -103,7 +103,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="ie.tcd.ase.entity.UserInfo" >
+  <insert id="insert" parameterType="ie.tcd.ase.entity.UserInfo" useGeneratedKeys="true" keyProperty="id">
     insert into user_info (id, create_date, update_date, 
       create_by, update_by, user_name, 
       gender, email, phone_number

@@ -17,6 +17,12 @@ public class Trip {
 
     private Integer groupId;
 
+    /**
+     * 1: initialized
+     * 2: started
+     * 3: finished
+     * 4: cancelled
+     */
     private Integer status;
 
     private String startPosition;
