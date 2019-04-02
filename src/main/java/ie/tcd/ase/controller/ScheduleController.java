@@ -29,10 +29,10 @@ public class ScheduleController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String add(@RequestBody Schedule schedule) {
+        logger.info("schedule info: ", schedule.toString());
 
         scheduleService.save(schedule);
         logger.info("Save schedule information successfully");
-
         ResultData result = new ResultData();
         result.setStatus("sucuess");
         result.setData("ok");

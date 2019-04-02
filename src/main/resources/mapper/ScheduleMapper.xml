@@ -139,8 +139,8 @@
       gender_preference, rating_preference, commute_type, 
       engage_time, status, current_server
       )
-    values (#{id,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE}, 
-      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, sysdate(), sysdate(),
+      'SYS', 'SYS', #{userId,jdbcType=INTEGER},
       #{startPosition,jdbcType=VARCHAR}, #{startPositionLongitude,jdbcType=VARCHAR}, 
       #{startPositionLatitude,jdbcType=VARCHAR}, #{endPosition,jdbcType=VARCHAR}, #{endPositionLongitude,jdbcType=VARCHAR}, 
       #{endPositionLatitude,jdbcType=VARCHAR}, #{weekday,jdbcType=INTEGER}, #{startDuration,jdbcType=DATE}, 

@@ -18,4 +18,6 @@ public interface UserInfoService {
      */
     UserInfo selectByUserId(int id);
 
+    UserInfo selectByPhoneNum(int selectByPhoneNum);
+
 }

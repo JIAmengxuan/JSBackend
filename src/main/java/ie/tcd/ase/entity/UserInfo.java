@@ -15,6 +15,10 @@ public class UserInfo {
 
     private String userName;
 
+    /**
+     * 0-female
+     * 1-male
+     */
     private String gender;
 
     private String email;

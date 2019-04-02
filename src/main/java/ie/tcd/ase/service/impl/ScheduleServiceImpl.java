@@ -18,6 +18,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public int save(Schedule schedule) {
+        
         return scheduleMapper.insert(schedule);
     }
 

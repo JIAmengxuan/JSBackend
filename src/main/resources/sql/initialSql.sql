@@ -51,6 +51,7 @@ create table schedule(
     `create_by` varchar (100) not null default 'sys',
     `update_by` varchar (100) not null default 'sys',
     `user_id` int not null comment 'id of table user_info',
+    `schedule_date_time` varchar (256),
     `start_position` varchar(256),
     `start_position_longitude` varchar(100) not null ,
     `start_position_latitude` varchar(100) not null ,
@@ -90,3 +91,6 @@ create table `trip` (
     primary key (id),
     constraint trip_foreign_key foreign key (`schedule_id`) references `schedule` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='trip table';
+
+
+a

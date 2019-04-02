@@ -2,7 +2,9 @@ package ie.tcd.ase.controller;
 
 import com.alibaba.fastjson.JSON;
 import ie.tcd.ase.dao.ResultData;
+import ie.tcd.ase.entity.ScheduleExample;
 import ie.tcd.ase.entity.UserInfo;
+import ie.tcd.ase.entity.UserInfoExample;
 import ie.tcd.ase.service.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +29,28 @@ public class UserInfoController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String add(@RequestBody UserInfo info) {
+        ResultData resultData = new ResultData();
+        logger.info("user info is null :{}", info == null);
+        if (info != null) {
+            logger.info("user info: {}", JSON.toJSONString(info));
+        }
+        // check phone number
+        UserInfo oldUser = userInfoService.selectByPhoneNum(info.getPhoneNumber());
+        if (oldUser != null) {
+            logger.info("repeatable data of user phone number");
+            resultData.setStatus("fail");
+            resultData.setData("repeated data");
+            return JSON.toJSONString(resultData);
+        }
+
         info.setCreateDate(new Date());
+        info.setEmail(info.getPhoneNumber().toString());
 
         userInfoService.insertUserInfo(info);
         int userId = info.getId();
         logger.info("id:" + String.valueOf(userId));
 
-        ResultData resultData = new ResultData();
+
         resultData.setStatus("success");
         resultData.setData(info);
         return JSON.toJSONString(resultData);
