@@ -36,7 +36,7 @@ public class ScheduleController {
         ResultData result = new ResultData();
         result.setStatus("sucuess");
         result.setData("ok");
-        return JSON.toJSONString("ok");
+        return JSON.toJSONString(result);
     }
 
 
@@ -52,7 +52,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
-    public String users(@RequestParam("scheduleId") int scheduleId) {
+        public String users(@RequestParam("scheduleId") int scheduleId) {
         List<UserInfo> userInfos = new ArrayList<>();
         userInfos = scheduleService.getUsersBySchedule(scheduleId);
 

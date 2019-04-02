@@ -1601,6 +1601,76 @@ public class ScheduleExample {
             addCriterion("current_server not between", value1, value2, "currentServer");
             return (Criteria) this;
         }
+
+        public Criteria andScheduleDateTimeIsNull() {
+            addCriterion("schedule_date_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeIsNotNull() {
+            addCriterion("schedule_date_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeEqualTo(String value) {
+            addCriterion("schedule_date_time =", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeNotEqualTo(String value) {
+            addCriterion("schedule_date_time <>", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeGreaterThan(String value) {
+            addCriterion("schedule_date_time >", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("schedule_date_time >=", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeLessThan(String value) {
+            addCriterion("schedule_date_time <", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeLessThanOrEqualTo(String value) {
+            addCriterion("schedule_date_time <=", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeLike(String value) {
+            addCriterion("schedule_date_time like", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeNotLike(String value) {
+            addCriterion("schedule_date_time not like", value, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeIn(List<String> values) {
+            addCriterion("schedule_date_time in", values, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeNotIn(List<String> values) {
+            addCriterion("schedule_date_time not in", values, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeBetween(String value1, String value2) {
+            addCriterion("schedule_date_time between", value1, value2, "scheduleDateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleDateTimeNotBetween(String value1, String value2) {
+            addCriterion("schedule_date_time not between", value1, value2, "scheduleDateTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

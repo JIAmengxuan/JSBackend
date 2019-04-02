@@ -8,6 +8,7 @@ import ie.tcd.ase.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,7 +19,17 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public int save(Schedule schedule) {
-        
+        schedule.setCreateBy("SYS");
+        schedule.setUpdateBy("SYS");
+        schedule.setStatus(0);
+        schedule.setWeekday(1);
+        schedule.setCurrentServer("1");
+        schedule.setStartDuration(new Date());
+        schedule.setStartDuration2(new Date());
+        schedule.setEndDuration(new Date());
+        schedule.setEndDuration2(new Date());
+        schedule.setCreateDate(new Date());
+        schedule.setUpdateDate(new Date());
         return scheduleMapper.insert(schedule);
     }
 
