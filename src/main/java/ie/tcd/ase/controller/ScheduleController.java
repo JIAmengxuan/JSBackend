@@ -47,7 +47,8 @@ public class ScheduleController {
         ResultData result = new ResultData();
         result.setStatus("sucuess");
         result.setData(schedules);
-        return JSON.toJSONString(schedules);
+
+        return JSON.toJSONString(JSON.toJSONString(result));
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
